@@ -4,4 +4,9 @@ export default {
     warehouseError: null,
     warehouseLoading: false,
   },
+  getProduct: {
+    dataProduct: [],
+    productError: null,
+    productLoading: false,
+  },
 };

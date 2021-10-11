@@ -7,6 +7,7 @@ import styles from './styles';
 import AppModal from '../../common/AppModal';
 import {useNavigation} from '@react-navigation/core';
 import {
+  AUTH_NAVIGATOR,
   CART_LIST,
   CART_LIST_STACK,
   HOME,
@@ -22,6 +23,8 @@ const Header = ({modalVisible, data, loading, setModalVisible, navigation}) => {
   const {
     authState: {isLoggedIn},
   } = useContext(GlobalContext);
+  const [isAuthenticated, setIsAutheticated] = React.useState(isLoggedIn);
+
   // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const {navigate} = useNavigation();
 
@@ -41,7 +44,7 @@ const Header = ({modalVisible, data, loading, setModalVisible, navigation}) => {
           shadowOpacity: 5,
           shadowRadius: 2,
         }}>
-        {isLoggedIn ? (
+        {isAuthenticated ? (
           <View
             style={{
               alignItems: 'center',
@@ -91,7 +94,7 @@ const Header = ({modalVisible, data, loading, setModalVisible, navigation}) => {
                 style={styles.btnLogin}
                 onPress={() => {
                   // setModalVisible(true);
-                  navigate(LOGIN);
+                  navigate(AUTH_NAVIGATOR, {screen: LOGIN});
                 }}>
                 <Text style={{color: colors.white}}>Masuk</Text>
               </TouchableOpacity>
@@ -102,7 +105,7 @@ const Header = ({modalVisible, data, loading, setModalVisible, navigation}) => {
                 style={styles.btnRegis}
                 onPress={() => {
                   // setModalVisible(true);
-                  navigate(REGISTER);
+                  navigate(AUTH_NAVIGATOR, {screen: REGISTER});
                 }}>
                 <Text style={{color: colors.blue, fontWeight: '500'}}>
                   Daftar

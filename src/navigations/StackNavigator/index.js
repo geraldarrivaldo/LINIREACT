@@ -2,6 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {View, Text} from 'react-native';
 import {
+  AUTH_NAVIGATOR,
   CART_LIST,
   CART_LIST_STACK,
   HOME_NAVIGATOR,
@@ -20,6 +21,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from '../../screens/Login';
 import Register from '../../screens/Register';
 import {GlobalContext} from '../../context/Provider';
+import AuthNavigator from '../AuthNavigator';
 
 const Stack = createStackNavigator();
 
@@ -31,8 +33,7 @@ const StackNavigator = () => {
       <Stack.Screen name={CART_LIST_STACK} component={CartList} />
       <Stack.Screen name={PROFILE} component={Profile} />
       <Stack.Screen name={PRODUCT_DETAIL} component={ProductDetail} />
-      <Stack.Screen name={LOGIN} component={Login} />
-      <Stack.Screen name={REGISTER} component={Register} />
+      <Stack.Screen name={AUTH_NAVIGATOR} component={AuthNavigator} />
     </Stack.Navigator>
   );
 };

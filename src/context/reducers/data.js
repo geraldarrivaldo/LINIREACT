@@ -1,17 +1,15 @@
 import {
-  GET_CONTACTS_FAIL,
-  GET_CONTACTS_LOADING,
-  GET_CONTACTS_SUCCESS,
-  GET_PRODUCTS_FAIL,
-  GET_PRODUCTS_LOADING,
-  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCT_FAIL,
+  GET_PRODUCT_LOADING,
+  GET_PRODUCT_SUCCESS,
   GET_WAREHOUSE_FAIL,
   GET_WAREHOUSE_LOADING,
   GET_WAREHOUSE_SUCCESS,
 } from '../../constants/actionTypes';
 
-const warehouse = (state, {type, payload}) => {
+const data = (state, {type, payload}) => {
   switch (type) {
+    //GET WAREHOUSE
     case GET_WAREHOUSE_LOADING:
       return {
         ...state,
@@ -41,9 +39,41 @@ const warehouse = (state, {type, payload}) => {
           warehouseError: payload,
         },
       };
+
+    //Get PRODUCT
+
+    case GET_PRODUCT_LOADING:
+      return {
+        ...state,
+        getProduct: {
+          ...state.getProduct,
+          productLoading: true,
+          productError: null,
+        },
+      };
+
+    case GET_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        getProduct: {
+          ...state.getProduct,
+          productLoading: false,
+          dataProduct: payload,
+          productError: null,
+        },
+      };
+    case GET_PRODUCT_FAIL:
+      return {
+        ...state,
+        getProduct: {
+          ...state.getProduct,
+          productLoading: false,
+          productError: payload,
+        },
+      };
     default:
       return state;
   }
 };
 
-export default warehouse;
+export default data;

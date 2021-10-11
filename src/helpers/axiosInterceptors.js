@@ -14,6 +14,7 @@ console.log('envs backend', envs.BACKEND_URL);
 axiosInstance.interceptors.request.use(
   async config => {
     const token = await AsyncStorage.getItem('linistore');
+    console.log('token nih', token);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

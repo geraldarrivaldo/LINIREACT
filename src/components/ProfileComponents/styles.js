@@ -8,6 +8,12 @@ export default StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
+
+  btnLogout: {
+    width: 100,
+    height: 40,
+    backgroundColor: colors.blue,
+  },
   icon: {
     backgroundColor: colors.blue,
     width: 55,

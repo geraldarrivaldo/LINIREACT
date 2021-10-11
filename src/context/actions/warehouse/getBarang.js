@@ -2,6 +2,9 @@ import {
   GET_PRODUCT_FAIL,
   GET_PRODUCT_LOADING,
   GET_PRODUCT_SUCCESS,
+  GET_WAREHOUSE_FAIL,
+  GET_WAREHOUSE_LOADING,
+  GET_WAREHOUSE_SUCCESS,
 } from '../../../constants/actionTypes';
 import axiosInstance from '../../../helpers/axiosInterceptors';
 
@@ -13,7 +16,7 @@ export default () => dispatch => {
   axiosInstance
     .get('web/product')
     .then(res => {
-      console.log('getProduct', res.data.result.products.rows);
+      console.log('productList', res.data.result.products.rows);
       dispatch({
         type: GET_PRODUCT_SUCCESS,
         payload: res.data.result.products.rows,

@@ -6,11 +6,12 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Container from '../../common/Container';
 import CustomButton from '../../common/CustomButton';
 import Input from '../../common/Input';
-import {LOGIN} from '../../constants/routeNames';
+import {HOME_NAVIGATOR, LOGIN} from '../../constants/routeNames';
 import Message from '../../common/Message';
 import styles from './styles';
 import Icon from '../../common/Icon';
 import colors from '../../assets/theme/colors';
+import Home from '../../screens/Home';
 
 const RegisterComponent = ({
   onSubmit,
@@ -180,6 +181,7 @@ const RegisterComponent = ({
                 />
               </View>
             )}
+
             <CustomButton
               loading={loading}
               onPress={onSubmit}

@@ -4,10 +4,16 @@ import {
   LOGIN_FAIL,
   LOGIN_LOADING,
   LOGIN_SUCCESS,
-} from '../../../constants/actionTypes';
-import axiosInstance from '../../../helpers/axiosInterceptors';
+  LOGOUT_USER,
+  CLEAR_AUTH_STATE,
+  REGISTER_FAIL,
+  REGISTER_LOADING,
+  REGISTER_SUCCESS,
+} from '../../constants/actionTypes';
+import axiosInstance from '../axiosInterceptors';
 
-export default ({password, user_login}) =>
+export const loginUser =
+  ({password, user_login}) =>
   dispatch => {
     dispatch({
       type: LOGIN_LOADING,
@@ -52,3 +58,49 @@ export default ({password, user_login}) =>
         });
       });
   };
+
+export const clearAuthState = () => dispatch => {
+  dispatch({
+    type: CLEAR_AUTH_STATE,
+  });
+};
+export const regisUser =
+  ({name, vendor_id, phone_number, password, password_confirmation}) =>
+  dispatch =>
+  onSuccess => {
+    dispatch({
+      type: REGISTER_LOADING,
+    });
+    axiosInstance
+      .post('web/auth/register', {
+        name,
+        vendor_id,
+        phone_number,
+        password,
+        password_confirmation,
+      })
+      .then(res => {
+        console.log('res', res);
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: res.data,
+        });
+        onSuccess(res.data);
+      })
+      .catch(err => {
+        dispatch({
+          type: REGISTER_FAIL,
+          payload: err.response
+            ? err.response.data
+            : {error: 'something went wrong'},
+        });
+      });
+  };
+
+export const logoutUser = () => dispatch => {
+  AsyncStorage.removeItem('token');
+  AsyncStorage.removeItem('user');
+  dispatch({
+    type: LOGOUT_USER,
+  });
+};

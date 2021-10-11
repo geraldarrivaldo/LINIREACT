@@ -1,7 +1,7 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useContext, useEffect, useState} from 'react';
 import LoginComponent from '../../components/LoginComponent';
-import {HOME_NAVIGATOR} from '../../constants/routeNames';
+import {HOME, HOME_NAVIGATOR} from '../../constants/routeNames';
 import loginUser from '../../context/actions/auth/loginUser';
 import {GlobalContext} from '../../context/Provider';
 
@@ -27,8 +27,9 @@ const Login = ({navigation}) => {
   const onSubmit = () => {
     if (form.user_login && form.password) {
       loginUser(form)(authDispatch);
+      // navigate(HOME_NAVIGATOR, {screen: HOME});
 
-      // navigate(HOME_NAVIGATOR);
+      // navigation.navigate(HOME_NAVIGATOR);
     }
   };
 

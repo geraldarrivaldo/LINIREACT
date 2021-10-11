@@ -6,7 +6,7 @@ import {useState} from 'react';
 import RegisterComponent from '../../components/RegisterComponent';
 import {LOGIN} from '../../constants/routeNames';
 import register, {clearAuthState} from '../../context/actions/auth/register';
-import getWarehouse from '../../context/actions/warehouse/getWarehouse';
+import getData from '../../context/actions/warehouse/getData';
 import {GlobalContext} from '../../context/Provider';
 
 const Register = () => {
@@ -16,14 +16,14 @@ const Register = () => {
   const {
     authDispatch,
     authState: {error, loading, data},
-    warehouseDispatch,
-    warehouseState: {
+    dataDispatch,
+    dataState: {
       getWarehouse: {dataWarehouse, warehouseLoading},
     },
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    getWarehouse()(warehouseDispatch);
+    getData()(dataDispatch);
   }, []);
 
   useFocusEffect(
